@@ -10,7 +10,8 @@ COPY src src
 #ENV POSTGRES_USER=postgres
 #ENV POSTGRES_PASSWORD=postgres
 
-RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests
+#RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests #GCP CloudRun 沒有buildkit跑不了
+RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM eclipse-temurin:21-jdk
