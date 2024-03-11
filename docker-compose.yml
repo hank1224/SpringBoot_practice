@@ -15,5 +15,9 @@ services:
       image: "postgres:15"
       volumes:
           - ./psql-data:/var/lib/postgresql/data
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=student
       ports:
           - "5432:5432"
