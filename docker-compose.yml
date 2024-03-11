@@ -6,10 +6,11 @@ services:
         - "8080:8080"
       depends_on:
         - db
-#      environment:
-#          - JDBC_POSTGRES_URL=jdbc:postgresql://db:5432/student
-#          - POSTGRES_USERNAME=postgres
-#          - POSTGRES_PASSWORD=postgres
+      environment:
+          - JDBC_POSTGRESQL_URL=jdbc:postgresql://db:5432/student
+          - POSTGRESQL_USERNAME=postgres
+          - POSTGRESQL_PASSWORD=postgres
+
     db:
       image: "postgres:15"
       volumes:
