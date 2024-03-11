@@ -7,18 +7,18 @@ COPY pom.xml .
 COPY src src
 
 #ENV JDBC_POSTGRESQL_URL=jdbc:postgresql://db:5432/student
-#ENV POSTGRESQL_USERNAME=postgres
-#ENV POSTGRESQL_PASSWORD=postgres
+#ENV POSTGRES_USER=postgres
+#ENV POSTGRES_PASSWORD=postgres
 
-RUN ./mvnw install -DskipTests
+RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM eclipse-temurin:21-jdk
 VOLUME /tmp
 
 #ENV JDBC_POSTGRESQL_URL=jdbc:postgresql://db:5432/student
-#ENV POSTGRESQL_USERNAME=postgres
-#ENV POSTGRESQL_PASSWORD=postgres
+#ENV POSTGRES_USER=postgres
+#ENV POSTGRES_PASSWORD=postgres
 
 ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib

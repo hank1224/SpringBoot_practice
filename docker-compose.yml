@@ -8,8 +8,8 @@ services:
         - db
       environment:
           - JDBC_POSTGRESQL_URL=jdbc:postgresql://db:5432/student
-          - POSTGRESQL_USERNAME=postgres
-          - POSTGRESQL_PASSWORD=postgres
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
 
     db:
       image: "postgres:15"
